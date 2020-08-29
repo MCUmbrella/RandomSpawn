@@ -2,6 +2,7 @@ package com.demmodders.randomspawn.events;
 
 import com.demmodders.randomspawn.RandomSpawn;
 import com.demmodders.randomspawn.Util;
+import com.demmodders.randomspawn.config.RandomSpawnConfig;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -12,8 +13,8 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 public class spawnWatcher {
     @SubscribeEvent
     public static void playerJoin(PlayerEvent.PlayerLoggedInEvent e){
-        // Check they're joining for the first time (so they don't randomly teleport when they join for the first time)
-        if (Util.getPlayer(e.player.getUniqueID()) == null){
+        // //Check they're joining for the first time (so they don't randomly teleport when they join for the first time)
+        if (!RandomSpawnConfig.ranromSpawnOnFirstJoin && Util.getPlayer(e.player.getUniqueID()) == null){
             Util.teleportPlayer((EntityPlayerMP) e.player, true);
         }
     }

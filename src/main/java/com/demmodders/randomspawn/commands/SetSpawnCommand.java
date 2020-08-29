@@ -17,6 +17,8 @@ import net.minecraftforge.server.permission.PermissionAPI;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.demmodders.randomspawn.SpongePermissionAdapter.spPChk;
+
 public class SetSpawnCommand extends CommandBase {
     @Override
     public String getName() {
@@ -40,6 +42,14 @@ public class SetSpawnCommand extends CommandBase {
             sender.sendMessage(new TextComponentString(DemConstants.TextColour.ERROR + "You don't have permission to do that"));
             return;
         }
+        //Sponge start
+        try {
+            if(!spPChk((org.spongepowered.api.entity.living.player.Player)(sender), "datrandomteleport.rspawn.admin")){
+                sender.sendMessage(new TextComponentString(DemConstants.TextColour.ERROR + "You don't have permission to do that"));
+                return;
+            }
+        }catch (Throwable e){com.demmodders.randomspawn.Util.LOGGER.info("Failed to check sponge permissions and granted by default: "+e.toString());}
+
 
         // Set the spawn in config and update the file
         RandomSpawnConfig.spawnX = (int) ((EntityPlayerMP) sender).posX;

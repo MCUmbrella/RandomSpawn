@@ -9,6 +9,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = RandomSpawn.MODID)
 public class RandomSpawnConfig {
+
+    @Config.Name("Random spawn on first join")
+    @Config.Comment("Should the player spawn at random location when first join")
+    public static boolean ranromSpawnOnFirstJoin = false;
+
     @Config.Name("Force Spawn Dimension")
     @Config.Comment("Should the player always spawn in the same world")
     public static boolean forceSpawnDimension = false;

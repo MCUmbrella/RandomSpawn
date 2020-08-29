@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.demmodders.randomspawn.SpongePermissionAdapter.spPChk;
+
 public class ResetSpawnCommand extends CommandBase {
     @Override
     public String getName() {
@@ -69,6 +71,14 @@ public class ResetSpawnCommand extends CommandBase {
                 sender.sendMessage(new TextComponentString(DemConstants.TextColour.ERROR + "You don't have permission to do that"));
                 return;
             }
+            //Sponge start
+            try {
+                if(!spPChk((org.spongepowered.api.entity.living.player.Player)(sender), "datrandomteleport.rspawn.spawnreset")|| !spPChk((org.spongepowered.api.entity.living.player.Player)(sender), "datrandomteleport.rspawn.spawnresetother") &&args.length>0){
+                    sender.sendMessage(new TextComponentString(DemConstants.TextColour.ERROR + "You don't have permission to do that"));
+                    return;
+                }
+            }catch (Throwable e){com.demmodders.randomspawn.Util.LOGGER.info("Failed to check sponge permissions and granted by default: "+e.toString());}
+
         }
 
         // Catch if has been called when saving spawn is disabled, as it means this command won't actually do anything
