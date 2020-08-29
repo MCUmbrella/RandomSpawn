@@ -14,7 +14,7 @@ public class spawnWatcher {
     @SubscribeEvent
     public static void playerJoin(PlayerEvent.PlayerLoggedInEvent e){
         // //Check they're joining for the first time (so they don't randomly teleport when they join for the first time)
-        if (!RandomSpawnConfig.ranromSpawnOnFirstJoin && Util.getPlayer(e.player.getUniqueID()) == null){
+        if (RandomSpawnConfig.ranromSpawnOnFirstJoin && Util.getPlayer(e.player.getUniqueID()) == null){
             Util.teleportPlayer((EntityPlayerMP) e.player, true);
         }
     }
