@@ -40,7 +40,7 @@ public class SetPlayerSpawnCommand extends CommandBase {
         } else if (!PermissionAPI.hasPermission((EntityPlayerMP) sender, "datrandomteleport.rspawn.admin")) {
             sender.sendMessage(new TextComponentString(DemConstants.TextColour.ERROR + "You don't have permission to do that"));
             return;
-        }
+        }//TODO: Implement Sponge permission check
         UUID targetPlayer;
         // Ensure its either being called by a player, or on a player
         if (args.length == 0) {

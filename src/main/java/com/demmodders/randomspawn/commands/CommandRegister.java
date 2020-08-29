@@ -19,4 +19,7 @@ public class CommandRegister {
         e.registerServerCommand(new SetSpawnCommand());
         e.registerServerCommand(new SetPlayerSpawnCommand());
     }
+
+    //TODO: Implement Sponge permission registration
+
 }
