@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.demmodders.randomspawn.SpongePermissionAdapter.spPChk;
+
 public class RandomSpawnCommand extends CommandBase {
 
     @Override
@@ -52,6 +54,14 @@ public class RandomSpawnCommand extends CommandBase {
                 sender.sendMessage(new TextComponentString(DemConstants.TextColour.ERROR + "You don't have permission to do that"));
                 return;
             }
+            //sponge start
+            try {
+                if(!spPChk((org.spongepowered.api.entity.living.player.Player)(sender), "datrandomteleport.rspawn.spawn")|| !spPChk((org.spongepowered.api.entity.living.player.Player)(sender), "datrandomteleport.rspawn.spawnother") &&args.length>0){
+                    sender.sendMessage(new TextComponentString(DemConstants.TextColour.ERROR + "You don't have permission to do that"));
+                    return;
+                }
+            }catch (Throwable e){System.out.println("Failed to check sponge permissions: "+e.toString());}
+
         }
 
         // Set the target to their argrument if they have provided one
