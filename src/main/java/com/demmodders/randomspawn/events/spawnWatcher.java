@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 @Mod.EventBusSubscriber(modid = RandomSpawn.MODID)
 public class spawnWatcher {
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void playerJoin(PlayerEvent.PlayerLoggedInEvent e){
         //Spawn players in random location on first join
         if (RandomSpawnConfig.ranromSpawnOnFirstJoin && Util.getPlayer(e.player.getUniqueID()) == null){

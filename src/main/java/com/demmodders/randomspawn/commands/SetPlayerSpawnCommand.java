@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static com.demmodders.randomspawn.SpongePermissionAdapter.spPChk;
+
 public class SetPlayerSpawnCommand extends CommandBase {
     @Override
     public String getName() {
@@ -40,7 +42,16 @@ public class SetPlayerSpawnCommand extends CommandBase {
         } else if (!PermissionAPI.hasPermission((EntityPlayerMP) sender, "datrandomteleport.rspawn.admin")) {
             sender.sendMessage(new TextComponentString(DemConstants.TextColour.ERROR + "You don't have permission to do that"));
             return;
-        }//TODO: Implement Sponge permission check
+        } else {
+            //Sponge start
+            try {
+                if(!spPChk((org.spongepowered.api.entity.living.player.Player)(sender), "datrandomteleport.rspawn.spawn")|| !spPChk((org.spongepowered.api.entity.living.player.Player)(sender), "datrandomteleport.rspawn.spawnother") &&args.length>0){
+                    sender.sendMessage(new TextComponentString(DemConstants.TextColour.ERROR + "You don't have permission to do that"));
+                    return;
+                }
+            }catch (Throwable e){com.demmodders.randomspawn.Util.LOGGER.info("Failed to check sponge permissions and granted by default: "+e.toString());}
+
+        }
         UUID targetPlayer;
         // Ensure its either being called by a player, or on a player
         if (args.length == 0) {
