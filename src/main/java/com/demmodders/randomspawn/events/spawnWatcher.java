@@ -18,8 +18,11 @@ public class spawnWatcher {
         if (RandomSpawnConfig.randomSpawnOnFirstJoin && Util.getPlayer(e.player.getUniqueID()) == null){
             Util.teleportPlayer((EntityPlayerMP) e.player, true);
             //Trying to fix incompatibility with sponge
-            try{Player p=(Player)e.player;
-                Util.LOGGER.info("Spawn "+p.getName()+" twice because of the sponge problem");}catch (Throwable ignored){}
+            try{
+                Player p=(Player)e.player;
+                Util.LOGGER.info("Spawn "+p.getName()+" twice because of the sponge problem");
+                Util.teleportPlayer((EntityPlayerMP) e.player, true);
+            }catch (Throwable ignored){}
         }
     }
 
