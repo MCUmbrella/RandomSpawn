@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import org.spongepowered.api.entity.living.player.Player;
 
 @Mod.EventBusSubscriber(modid = RandomSpawn.MODID)
 public class spawnWatcher {
@@ -16,13 +15,7 @@ public class spawnWatcher {
     public static void playerJoin(PlayerEvent.PlayerLoggedInEvent e){
         //Spawn players in random location on first join
         if (RandomSpawnConfig.randomSpawnOnFirstJoin && Util.getPlayer(e.player.getUniqueID()) == null){
-            Util.teleportPlayer((EntityPlayerMP) e.player, true);
-            //Trying to fix incompatibility with sponge
-            try{
-                Player p=(Player)e.player;
-                Util.LOGGER.info("Spawn "+p.getName()+" twice because of the sponge problem");
-                Util.teleportPlayer((EntityPlayerMP) e.player, true);
-            }catch (Throwable ignored){}
+            Util.teleportPlayer((EntityPlayerMP) e.player, true);//FIXME: Random spawn on first join has no effect when sponge is installed
         }
     }
 
