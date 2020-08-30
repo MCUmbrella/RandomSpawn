@@ -12,7 +12,7 @@ public class RandomSpawnConfig {
 
     @Config.Name("Random spawn on first join")
     @Config.Comment("Should the player spawn at random location when first join")
-    public static boolean ranromSpawnOnFirstJoin = false;
+    public static boolean randomSpawnOnFirstJoin = false;
 
     @Config.Name("Force Spawn Dimension")
     @Config.Comment("Should the player always spawn in the same world")
